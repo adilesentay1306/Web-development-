@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<style>
+p {
+  background-image: url('img_girl.jpg');
+}
+body {
+  background-image: url('img_girl.jpg');
+}
+body {
+  background-image: url('example_img_girl.jpg');
+  background-repeat: no-repeat;
+}
+</style>
+
+<style>
+body {
+  background-image: url('img_girl.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<body>
+    
+<p style="background-image: url('img_girl.jpg');"></p>
+
+
+
+<!--<picture> Element-->
+
+<picture>
+  <source media="(min-width: 650px)" srcset="img_food.jpg">
+  <source media="(min-width: 465px)" srcset="img_car.jpg">
+  <img src="img_girl.jpg">
+</picture>
+
+</body>
+</html>
