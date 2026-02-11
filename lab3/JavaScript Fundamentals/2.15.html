@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+//Task 1
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    // ...
+    return confirm('Did parents allow you?');
+  }
+}
+
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  }
+  // ...
+  return confirm('Did parents allow you?');
+}
+//no difference, they work the same
+
+//Task 2
+function checkAge(age) {
+  return (age > 18) ? true : confirm('Did parents allow you?');
+}
+
+function checkAge(age) {
+  return (age > 18) || confirm('Did parents allow you?');
+}
+
+//task 3
+function min(a, b) {
+  if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+  
+//Task 4
+
+function pow(x, y){
+    let res = x;
+
+    for(let i = 1; i < y; i++){
+        res *= y;
+    }
+    return res;
+}
+
+let x = prompt("x?", '');
+let y = prompt("n?", '');
+
+if (y < 1) {
+  alert(`Power ${n} is not supported, use a positive integer`);
+} else {
+  alert( pow(x, y) );
+}
+
+</script>
+</body>
+</html>
