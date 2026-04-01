@@ -1,27 +1,19 @@
-from django.http import JsonResponse
-from .models import Product, Category
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from .models import Category, Product
+from .serializers import CategorySerializer, ProductSerializer
 
-def products_list(request):
-    products = Product.objects.all().values()
-    return JsonResponse(list(products), safe=False)
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
-def product_detail(request, id):
-    product = Product.objects.filter(id=id).values().first()
-    if product is None:
-        return JsonResponse({"error": "Not found"}, status=404)
-    return JsonResponse(product)
+    @action(detail=True, methods=['get'])
+    def products(self, request, pk=None):
+        products = Product.objects.filter(category_id=pk)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
 
-def categories_list(request):
-    categories = Category.objects.all().values()
-    return JsonResponse(list(categories), safe=False)
-
-def category_detail(request, id):
-    category = Category.objects.filter(id=id).values().first()
-    if category is None:
-        return JsonResponse({"error": "Not found"}, status=404)
-    return JsonResponse(category)
-
-def category_products(request, id):
-    products = Category.objects.filter(id=id).values()
-    return JsonResponse(list(products), safe=False)
-
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
