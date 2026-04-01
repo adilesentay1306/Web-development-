@@ -1,0 +1,39 @@
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <h1>🛒 Kaspi Магазин</h1>
+    <p>Выберите категорию товаров</p>
+  </header>
+
+  <!-- Category Buttons -->
+  <nav class="categories">
+    <button
+      *ngFor="let cat of categories"
+      class="category-btn"
+      [class.active]="cat.id === selectedCategoryId"
+      (click)="selectCategory(cat.id)"
+    >
+      {{ cat.name }}
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Welcome screen -->
+    <div *ngIf="selectedCategoryId === null" class="welcome">
+      <div class="welcome-icon">👆</div>
+      <h2>Выберите категорию выше</h2>
+      <p>Смартфоны, ноутбуки, наушники и планшеты</p>
+    </div>
+
+    <!-- Product List -->
+    <div *ngIf="selectedCategoryId !== null">
+      <h2 class="category-title">{{ getCategoryName() }}</h2>
+      <app-product-list [products]="filteredProducts"></app-product-list>
+    </div>
+
+  </main>
+
+</div>
